@@ -1,20 +1,26 @@
+import java.util.*;
 public class EmpWageBuilder {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation Program");
-		int isPresent=1;
-		int salary;
-		double empCheck = Math.floor(Math.random() * 10) % 2 ;
-		if ( empCheck == isPresent ){
-			System.out.println("Employee is Present");
-			int empRatePerHr=20;
-		   int empHrs=8;
-		   salary=empHrs*empRatePerHr;
-			System.out.println("Salary is: "+salary);
+		int isPartTime=1;
+		int isFullTime=2;
+		int empRatePerHr=20;
+		int salary,empHrs;
+		Random rand=new Random();
+		int empCheck=rand.nextInt(3);
+		if ( empCheck == isFullTime ){
+		   empHrs=16;
+		   System.out.println("Employee is Present");
 		}
-		else{
+		else if ( empCheck == isPartTime ){
+			empHrs=8;
+			System.out.println("Employee is Present Part-Time");
+		}
+		else {
 			System.out.println("Employee is Absent");
-			salary=0;
-			System.out.println("Salary is: "+salary);
+			empHrs=0;
 		}
+		salary=empHrs*empRatePerHr;
+		System.out.println("Salary is: "+salary);
 	}
 }
