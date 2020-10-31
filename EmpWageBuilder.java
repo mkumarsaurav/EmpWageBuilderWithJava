@@ -1,14 +1,18 @@
 import java.util.*;
 public class EmpWageBuilder {
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation Program");
-		final int isPartTime=1;
-		final int isFullTime=2;
-		int empRatePerHr=20;
-		int numWorkingDays=0,workingHrs=0;
-		int salary,empHrs,empCheck,totalSalary=0;
+	public static final int isPartTime=1;
+	public static final int isFullTime=2;
+	public static final int empRatePerHr=20;
+	public static final int numWorkingDays=20;
+	public static final int maxWorkingHrs=100;
+
+	public static int computeEmpWage(){
 		Random rand=new Random();
-		while(numWorkingDays<20 && workingHrs<100){
+	//variables
+		int totalWorkingDays=0,workingHrs=0;
+		int salary,empHrs,empCheck,totalSalary=0;
+	//computation
+		while(totalWorkingDays<numWorkingDays && workingHrs<maxWorkingHrs){
 			empCheck=(int)rand.nextInt(3);
 			switch(empCheck){
 				case isFullTime: {
@@ -27,11 +31,16 @@ public class EmpWageBuilder {
 					break;
 					}
 			}
-			numWorkingDays++;
+			totalWorkingDays++;
 			workingHrs=workingHrs+empHrs;
 			salary=empHrs*empRatePerHr;
 			totalSalary=totalSalary+salary;
 		}
-			System.out.println("Salary for a Month is: "+totalSalary);
+		System.out.println("Salary for a Month is: "+totalSalary);
+		return totalSalary;
+	}
+	public static void main(String[] args) {
+      System.out.println("Welcome to Employee Wage Computation Program");
+		computeEmpWage();
 	}
 }
