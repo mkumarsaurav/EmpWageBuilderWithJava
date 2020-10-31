@@ -5,10 +5,10 @@ public class EmpWageBuilder {
 		final int isPartTime=1;
 		final int isFullTime=2;
 		int empRatePerHr=20;
-		int numWorkingDays=20;
+		int numWorkingDays=0,workingHrs=0;
 		int salary,empHrs,empCheck,totalSalary=0;
 		Random rand=new Random();
-		for(int day=1; day<=numWorkingDays; day++){
+		while(numWorkingDays<20 && workingHrs<100){
 			empCheck=(int)rand.nextInt(3);
 			switch(empCheck){
 				case isFullTime: {
@@ -27,6 +27,8 @@ public class EmpWageBuilder {
 					break;
 					}
 			}
+			numWorkingDays++;
+			workingHrs=workingHrs+empHrs;
 			salary=empHrs*empRatePerHr;
 			totalSalary=totalSalary+salary;
 		}
