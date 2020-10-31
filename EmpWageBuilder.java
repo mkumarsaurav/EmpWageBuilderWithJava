@@ -2,11 +2,8 @@ import java.util.*;
 public class EmpWageBuilder {
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
-	public static final int empRatePerHr=20;
-	public static final int numWorkingDays=20;
-	public static final int maxWorkingHrs=100;
 
-	public static int computeEmpWage(){
+	public static int computeEmpWage(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs){
 		Random rand=new Random();
 	//variables
 		int totalWorkingDays=0,workingHrs=0;
@@ -36,11 +33,12 @@ public class EmpWageBuilder {
 			salary=empHrs*empRatePerHr;
 			totalSalary=totalSalary+salary;
 		}
-		System.out.println("Salary for a Month is: "+totalSalary);
+		System.out.println("Total Employee Wage for Company: "+company+" is: "+totalSalary);
 		return totalSalary;
 	}
 	public static void main(String[] args) {
       System.out.println("Welcome to Employee Wage Computation Program");
-		computeEmpWage();
+		computeEmpWage("DMart",20,30,60);
+		computeEmpWage("Reliance",10,40,80);
 	}
 }
