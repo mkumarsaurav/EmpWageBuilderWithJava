@@ -3,42 +3,58 @@ public class EmpWageBuilder {
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
 
-	public static int computeEmpWage(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs){
+	private final String company;
+	private final int empRatePerHr;
+	private final int numWorkingDays;
+	private final int maxWorkingHrs;
+	int totalSalary;
+
+	public EmpWageBuilder(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs) {
+		this.company=company;
+		this.empRatePerHr=empRatePerHr;
+		this.numWorkingDays=numWorkingDays;
+		this.maxWorkingHrs=maxWorkingHrs;
+	}
+
+	public void computeEmpWage(){
 		Random rand=new Random();
 	//variables
 		int totalWorkingDays=0,workingHrs=0;
-		int salary,empHrs,empCheck,totalSalary=0;
+		int salary,empHrs,empCheck;
+		totalSalary=0;
 	//computation
 		while(totalWorkingDays<numWorkingDays && workingHrs<maxWorkingHrs){
 			empCheck=(int)rand.nextInt(3);
 			switch(empCheck){
-				case isFullTime: {
+				case isFullTime:
 				   empHrs=16;
-		   		System.out.println("Employee is Present");
 					break;
-					}
-				case isPartTime:{
+				case isPartTime:
 					empHrs=8;
-					System.out.println("Employee is Present Part-Time");
 					break;
-					}
-				default: {
-					System.out.println("Employee is Absent");
+				default:
 					empHrs=0;
 					break;
-					}
 			}
 			totalWorkingDays++;
 			workingHrs=workingHrs+empHrs;
 			salary=empHrs*empRatePerHr;
 			totalSalary=totalSalary+salary;
 		}
-		System.out.println("Total Employee Wage for Company: "+company+" is: "+totalSalary);
-		return totalSalary;
 	}
+
+	@Override
+	public String toString() {
+		return "Total Employee Wage for Company: " +company+ " is: " +totalSalary;
+	}
+
 	public static void main(String[] args) {
-      System.out.println("Welcome to Employee Wage Computation Program");
-		computeEmpWage("DMart",20,30,60);
-		computeEmpWage("Reliance",10,40,80);
+		System.out.println("Welcome to Employee Wage Computation Program");
+		EmpWageBuilder dMart = new EmpWageBuilder("DMart",20,30,60);
+		EmpWageBuilder reliance = new EmpWageBuilder("Reliance",10,40,80);
+		dMart.computeEmpWage();
+		System.out.println(dMart);
+		reliance.computeEmpWage();
+		System.out.println(reliance);
 	}
 }
