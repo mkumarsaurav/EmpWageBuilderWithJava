@@ -1,4 +1,10 @@
 import java.util.*;
+
+interface EmpWageBuilderInterface{
+	public void addCompanyEmpWage(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs);
+	public void computeEmpWage();
+	}
+
 class CompanyEmpWage {
 	public final String company;
    public final int empRatePerHr;
@@ -22,7 +28,7 @@ class CompanyEmpWage {
    }
 }
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements EmpWageBuilderInterface {
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
 
@@ -33,12 +39,12 @@ public class EmpWageBuilder {
 		companyEmpWageArray=new CompanyEmpWage[5];
 	}
 
-	private void addCompanyEmpWage(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs) {
+	public void addCompanyEmpWage(String company, int empRatePerHr, int numWorkingDays, int maxWorkingHrs) {
 		companyEmpWageArray[numOfCompany]=new CompanyEmpWage(company,empRatePerHr,numWorkingDays,maxWorkingHrs);
 		numOfCompany++;
 	}
 
-	private void computeEmpWage(){
+	public void computeEmpWage(){
 		int totalWage;
 		for(int i=0; i<numOfCompany; i++){
 			totalWage=this.computeEmpWage(companyEmpWageArray[i]);
@@ -46,7 +52,7 @@ public class EmpWageBuilder {
 		}
 	}
 
-	private int computeEmpWage(CompanyEmpWage companyEmpWage){
+	int computeEmpWage(CompanyEmpWage companyEmpWage){
 		Random rand=new Random();
 	//variables
 		int totalWorkingDays=0,workingHrs=0;
