@@ -83,11 +83,8 @@ public class EmpWageBuilder implements EmpWageBuilderInterface {
 		return salary;
 	}
 
-	void printEmpWages(){
-		System.out.println("Company Name and Total EmpWages are:");
-		for(String company : totalEmpWages.keySet()){
-			System.out.println(company+": "+totalEmpWages.get(company));
-		}
+	public int getEmpWages(String company){
+			return totalEmpWages.get(company);
 	}
 
 	public static void main(String[] args) {
@@ -95,6 +92,6 @@ public class EmpWageBuilder implements EmpWageBuilderInterface {
 		empWageBuilder.addCompanyEmpWage("DMart",20,30,60);
 		empWageBuilder.addCompanyEmpWage("Reliance",10,40,80);
 		empWageBuilder.computeEmpWage();
-		empWageBuilder.printEmpWages();
+		System.out.println("Total Wage for DMart Company: "+empWageBuilder.getEmpWages("DMart"));
 	}
 }
